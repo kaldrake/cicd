@@ -32,11 +32,12 @@ jobs:
       run: mvn -B test
     
   security:
-      name: SA scan using SYNK
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@master
-        - name: Run Snyk to check for vulnerabilities
-          uses: snyk/actions/maven@master
-          env:
-            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+    needs: build
+    name: SA scan using SYNK
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/maven@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
