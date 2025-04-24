@@ -31,7 +31,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B test
     
-    SNYK:
+  security:
       name: SA scan using SYNK
       runs-on: ubuntu-latest
       steps:
